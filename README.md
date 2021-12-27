@@ -5,3 +5,4 @@ URL shortener (“сокращатель ссылок”) - это сервис,
 - project-layout like repository;
 - pre-commits hooks (local and GitHub Actions);
 - golangci linters;
+- OpenApi description;
