@@ -1,7 +1,35 @@
 package main
 
-import "fmt"
+import (
+	"flag"
+	"fmt"
+	"log"
+	"strconv"
+
+	config "github.com/White-AK111/shortener/configs"
+)
+
+const (
+	usageConfig = "use this flag for set path to configuration file"
+)
+
+var (
+	USECONFIG = "../configs/config.yml"
+)
 
 func main() {
-	fmt.Println("Hello shortener!")
+
+	// Load config file
+	cfg, err := config.InitConfig(&USECONFIG)
+	if err != nil {
+		log.Fatalf("Can't load configuration file: %s", err)
+	}
+
+	fmt.Printf("Host: %s:%s\n", cfg.App.ServerAddress, strconv.Itoa(cfg.App.ServerPort))
+}
+
+// init func, parse flags
+func init() {
+	flag.StringVar(&USECONFIG, "path", "../configs/config.yml", usageConfig)
+	flag.Parse()
 }

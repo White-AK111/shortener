@@ -7,7 +7,7 @@ info:
     name: Mikhail Belov
     url: mailto:formatmyc@gmail.com
 paths:
-  /link/{shortURL}:
+  /{shortURL}:
     get:
       summary: Forward from short URL to long URL
       description: This endpoint forwarding from short URL to long URL.
@@ -28,7 +28,7 @@ paths:
               schema:
                 type: string
                 format: uri
-  /link/shrot/{longURL}:
+  /shrot/{longURL}:
     get:
       summary: Return short URL
       description: This endpoint returns short URL from long URL.
@@ -49,7 +49,7 @@ paths:
               schema:
                 type: string
                 format: uri
-  /link/stat/{shortURL}:
+  /stat/{shortURL}:
     get:
       summary: Return statistics for short URL
       description: This endpoint returns statistics for short URL.
