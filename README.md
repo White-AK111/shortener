@@ -6,3 +6,10 @@ URL shortener (“сокращатель ссылок”) - это сервис,
 - pre-commits hooks (local and GitHub Actions);
 - golangci linters;
 - OpenApi description;
+
+В качестве роутера выбран gin (https://github.com/gin-gonic/gin).
+Причины выбора:
+1. TOP 1 по рейтингу репозиториев - https://github.com/mingrammer/go-web-framework-stars
+   Актуальность, большая распространённость.
+2. Минималистичность данного фреймворка.
+3. Опыт его использования ранее.

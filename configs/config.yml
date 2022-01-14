@@ -1,8 +1,5 @@
 app:
-  URL: "https://golang.org"
-  timeoutRequest: 10
-  timeoutApp: 180
-  maxDepth: 3
-  maxResults: 5000
-  maxErrors: 5000
-  deltaDepth: 2
+  logLevel: -1
+  serverAddress: "localhost"
+  serverPort: 9000
+  storagePath: "../internal/storage/storage.db"
