@@ -10,7 +10,7 @@ import (
 // Config structure for all settings of application
 type Config struct {
 	App struct {
-		ServerAddress  string        `fig:"serverAddress" envconfig:"ADDRESS" default:"localhost"`
+		ServerAddress  string        `fig:"serverAddress" envconfig:"ADDRESS"` //default:"localhost"`
 		ServerPort     int           `fig:"serverPort" envconfig:"PORT" default:"9000"`
 		StoragePath    string        `fig:"storagePath" envconfig:"STORAGE" default:"../internal/storage/storage.db" `
 		TimeoutRequest time.Duration `fig:"timeoutRequest" envconfig:"TIMEOUT" default:"10"`
@@ -33,7 +33,7 @@ func InitConfig(useConfig *string) (*Config, error) {
 	if err != nil {
 		err = fig.Load(&cfg, fig.File("config.yml"))
 		if err != nil {
-			log.Fatalf("can't load configuration file: %s", err)
+			log.Printf("can't load configuration file: %s", err)
 			return nil, err
 		}
 	}

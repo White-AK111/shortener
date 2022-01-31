@@ -29,14 +29,14 @@ const (
 )
 
 var (
-	USECONFIG = "../configs/config.yml"
+	USECONFIG string
 )
 
 func main() {
 	// Load config file
 	cfg, err := config.InitConfig(&USECONFIG)
 	if err != nil {
-		log.Fatalf("Can't load configuration file: %s", err)
+		log.Fatalf("Can't load configuration file %s. Error: %s", USECONFIG, err)
 	}
 
 	// Create context that listens for the interrupt signal from the OS.

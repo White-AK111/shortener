@@ -1,5 +1,5 @@
 app:
-  serverAddress: "localhost"
+  serverAddress: ""
   serverPort: 9000
   timeoutRequest: 10
 dbConfig:
