@@ -2,23 +2,28 @@ package config
 
 import (
 	"log"
-	"os"
 	"time"
 
 	"github.com/kkyr/fig"
-	"go.uber.org/zap"
-	"go.uber.org/zap/zapcore"
 )
 
 // Config structure for all settings of application
 type Config struct {
 	App struct {
-		Logger        *zap.Logger // logger for use, don't load from configuration file
-		LogLevel      int         `fig:"logLevel" default:"0"`                                 // 0-info, 1-warn, -1-debug, 2-error, 4-panic, 5-fatal
-		ServerAddress string      `fig:"serverAddress" default:"localhost"`                    // server address
-		ServerPort    int         `fig:"serverPort" default:"9000"`                            // server port
-		StoragePath   string      `fig:"storagePath" default:"../internal/storage/storage.db"` // storage db filepath
+		ServerAddress  string        `fig:"serverAddress" envconfig:"ADDRESS" default:"localhost"`
+		ServerPort     int           `fig:"serverPort" envconfig:"PORT" default:"9000"`
+		StoragePath    string        `fig:"storagePath" envconfig:"STORAGE" default:"../internal/storage/storage.db" `
+		TimeoutRequest time.Duration `fig:"timeoutRequest" envconfig:"TIMEOUT" default:"10"`
+		LogLevel       string        `envconfig:"GIN_MODE" default:"debug"`
 	} `fig:"app"`
+
+	DBConfig struct {
+		Host     string `fig:"host" envconfig:"DB_HOST"`
+		User     string `fig:"user" envconfig:"DB_USER"`
+		Password string `fig:"password" envconfig:"DB_PASSWORD"`
+		DBName   string `fig:"dbName" envconfig:"DB_NAME"`
+		Port     int    `fig:"port" envconfig:"DB_PORT"`
+	} `fig:"dbConfig"`
 }
 
 // InitConfig function for initialize Config structure
@@ -32,48 +37,6 @@ func InitConfig(useConfig *string) (*Config, error) {
 			return nil, err
 		}
 	}
-
-	//Set log level
-	atomicLevel := zap.NewAtomicLevel()
-	switch cfg.App.LogLevel {
-	case 0:
-		{
-			atomicLevel.SetLevel(zap.InfoLevel)
-		}
-	case 1:
-		{
-			atomicLevel.SetLevel(zap.WarnLevel)
-		}
-	case -1:
-		{
-			atomicLevel.SetLevel(zap.DebugLevel)
-		}
-	case 2:
-		{
-			atomicLevel.SetLevel(zap.ErrorLevel)
-		}
-	case 4:
-		{
-			atomicLevel.SetLevel(zap.PanicLevel)
-		}
-	case 5:
-		{
-			atomicLevel.SetLevel(zap.FatalLevel)
-		}
-	}
-
-	encoderCfg := zap.NewProductionEncoderConfig()
-	encoderCfg.EncodeTime = zapcore.TimeEncoderOfLayout(time.RFC3339)
-	encoderCfg.EncodeLevel = zapcore.CapitalColorLevelEncoder
-	encoderCfg.EncodeCaller = zapcore.ShortCallerEncoder
-
-	logger := zap.New(zapcore.NewCore(
-		zapcore.NewConsoleEncoder(encoderCfg),
-		zapcore.Lock(os.Stdout),
-		atomicLevel,
-	), zap.AddCaller())
-
-	cfg.App.Logger = logger
 
 	return &cfg, err
 }

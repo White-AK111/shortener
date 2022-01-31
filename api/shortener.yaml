@@ -28,7 +28,7 @@ paths:
               schema:
                 type: string
                 format: uri
-  /shrot/{longURL}:
+  /link/{longURL}:
     get:
       summary: Return short URL
       description: This endpoint returns short URL from long URL.
@@ -49,7 +49,7 @@ paths:
               schema:
                 type: string
                 format: uri
-  /stat/{shortURL}:
+  /link/stat/{shortURL}:
     get:
       summary: Return statistics for short URL
       description: This endpoint returns statistics for short URL.
