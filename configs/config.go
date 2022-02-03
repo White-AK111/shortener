@@ -2,7 +2,6 @@ package config
 
 import (
 	"log"
-	"time"
 
 	"github.com/kelseyhightower/envconfig"
 	"github.com/kkyr/fig"
@@ -11,11 +10,10 @@ import (
 // Config structure for all settings of application
 type Config struct {
 	App struct {
-		ServerAddress  string        `fig:"serverAddress" envconfig:"ADDRESS"` //default:"localhost"`
-		ServerPort     int           `fig:"serverPort" envconfig:"PORT" default:"9000"`
-		StoragePath    string        `fig:"storagePath" envconfig:"STORAGE" default:"../internal/storage/storage.db" `
-		TimeoutRequest time.Duration `fig:"timeoutRequest" envconfig:"TIMEOUT" default:"10"`
-		LogLevel       string        `envconfig:"GIN_MODE" default:"debug"`
+		ServerAddress string `fig:"serverAddress" envconfig:"ADDRESS"` //default:"localhost"`
+		ServerPort    int    `fig:"serverPort" envconfig:"PORT" default:"9000"`
+		StoragePath   string `fig:"storagePath" envconfig:"STORAGE" default:"../internal/storage/storage.db" `
+		LogLevel      string `envconfig:"GIN_MODE" default:"debug"`
 	} `fig:"app"`
 
 	DBConfig struct {

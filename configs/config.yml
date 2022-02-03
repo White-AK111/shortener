@@ -1,7 +1,6 @@
 app:
   serverAddress: ""
   serverPort: 9000
-  timeoutRequest: 10
 dbConfig:
   host: "postgres"
   user: "shortenerapi"
