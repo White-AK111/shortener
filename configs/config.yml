@@ -1,5 +1,10 @@
 app:
-  logLevel: -1
-  serverAddress: "localhost"
+  serverAddress: ""
   serverPort: 9000
-  storagePath: "../internal/storage/storage.db"
+  timeoutRequest: 10
+dbConfig:
+  host: "postgres"
+  user: "shortenerapi"
+  password: "Q1w2e3r4t5"
+  dbName: "shortener"
+  port: 5432
