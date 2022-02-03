@@ -4,6 +4,7 @@ import (
 	"log"
 	"time"
 
+	"github.com/kelseyhightower/envconfig"
 	"github.com/kkyr/fig"
 )
 
@@ -34,7 +35,11 @@ func InitConfig(useConfig *string) (*Config, error) {
 		err = fig.Load(&cfg, fig.File("config.yml"))
 		if err != nil {
 			log.Printf("can't load configuration file: %s", err)
-			return nil, err
+			err = envconfig.Process("", &cfg)
+			if err != nil {
+				log.Printf("failed to read config from env: %v", err)
+				return nil, err
+			}
 		}
 	}
 
