@@ -24,12 +24,9 @@ import (
 	_ "github.com/lib/pq"
 )
 
-const (
-	usageConfig = "use this flag for set path to configuration file"
-)
-
 var (
-	USECONFIG string
+	USECONFIG   string
+	usageConfig = "use this flag for set path to configuration file"
 )
 
 func main() {

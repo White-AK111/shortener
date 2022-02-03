@@ -1,6 +1,8 @@
 package usecase
 
-import link "github.com/White-AK111/shortener/internal/pkg"
+import (
+	"github.com/White-AK111/shortener/internal/pkg/link"
+)
 
 type usecase struct {
 	repo link.Repository

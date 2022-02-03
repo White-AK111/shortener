@@ -1,7 +1,7 @@
 package postgres
 
 import (
-	link "github.com/White-AK111/shortener/internal/pkg"
+	"github.com/White-AK111/shortener/internal/pkg/link"
 
 	"github.com/jmoiron/sqlx"
 )

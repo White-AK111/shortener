@@ -1,6 +1,8 @@
 package gin
 
-import link "github.com/White-AK111/shortener/internal/pkg"
+import (
+	"github.com/White-AK111/shortener/internal/pkg/link"
+)
 
 type delivery struct {
 	links link.Usecase
